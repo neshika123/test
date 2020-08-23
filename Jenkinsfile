@@ -61,6 +61,7 @@ node {
   if(env.BRANCH_NAME == 'develop'){
     stage('Snapshot Build And Upload Artifacts') {
       if (isUnix()) {
+        input 'Approval for QA deploy?'
          sh "'${mvnHome}/bin/mvn' clean deploy"
       } else {
          bat(/"${mvnHome}\bin\mvn" clean deploy/)
