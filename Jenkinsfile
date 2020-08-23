@@ -61,7 +61,7 @@ node {
   if(env.BRANCH_NAME == 'develop'){
     stage('Snapshot Build And Upload Artifacts') {
       if (isUnix()) {
-        echo "'job ${env.JOB_NAME}'  (${env.BUILD_NUMBER}) is waiting for input, in ${env.BUILD_URL}"
+       
         input 'Approval for QA deploy?'
          sh "'${mvnHome}/bin/mvn' clean deploy"
       } else {
@@ -74,7 +74,9 @@ node {
     }
 
     stage("Smoke Test"){
+       echo "'job ${env.JOB_NAME}'  (${env.BUILD_NUMBER}) is waiting for input, in ${env.BUILD_URL}"
        sh "curl --retry-delay 10 --retry 5 http://192.168.0.111:8080/devops"
+       echo "'job ${env.JOB_NAME}'  (${env.BUILD_NUMBER}) is waiting for input, in ${env.BUILD_URL}"
     }
 
   }
