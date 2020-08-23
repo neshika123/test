@@ -7,16 +7,9 @@ node {
       javaHome = tool 'JAVA_HOME'
    }
    stage('Build') {
-      if (isUnix()) {
-         sh "echo '11111111111111111111111'"
-         sh "export JAVA_HOME=${javaHome}" 
-          sh "echo '22222222222222222222'"
-         sh "export PATH=${javaHome}/bin:$PATH"
-          sh "echo '33333333333333333'"
-         sh "echo $PATH"
-          sh "echo '4444444444444444444444'"
-         sh "echo JAVA PATH SETTING"
-          sh "echo '55555555555555555552'"
+      if (isUnix()) {         
+         sh "export PATH=${javaHome}/bin:$PATH"          
+         sh "echo $PATH"        
          sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
       } else {
          bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
