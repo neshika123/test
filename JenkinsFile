@@ -8,9 +8,11 @@ node {
    }
    stage('Build') {
       if (isUnix()) {
+         sh "echo JAVA PATH SETTING"
          sh "export JAVA_HOME=${javaHome}" 
-         sh "export PATH=$JAVA-HOME/bin:$PATH"
+         sh "export PATH=$JAVA_HOME/bin:$PATH"
          sh "echo $PATH"
+         sh "echo JAVA PATH SETTING"
          sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
       } else {
          bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
