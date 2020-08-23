@@ -41,7 +41,7 @@ node {
 
   stage('Sonar') {
      if (isUnix()) {
-        sh "'${mvnHome}/bin/mvn' sonar:sonar"
+        sh "'${mvnHome}/bin/mvn'  -Dsonar.host.url=http://192.168.0.111:9000  -Dsonar.login=0ca049740e2ae3d445e0c0add0b281286c6017cc sonar:sonar"
      } else {
         bat(/"${mvnHome}\bin\mvn" sonar:sonar/)
      }
