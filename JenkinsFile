@@ -8,8 +8,7 @@ node {
    }
    stage('Build') {
       if (isUnix()) {
-         sh "export JAVA_HOME=${javaHome}"
-         sh "export PATH=${PATH}:${JAVA_HOME}/bin"
+         sh "export JAVA_HOME=${javaHome}"         
          sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
       } else {
          bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
